@@ -59,3 +59,19 @@ body::-webkit-scrollbar {
      border-b-2
     shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)]
 }
+.label{
+    width:70%;
+    height:15%;
+    text-align: start !important;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: larger;
+}
+.input-s{
+    width:80%;
+    height:20%;
+    margin-bottom:15px;
+}
+.text-login{
+    @apply
+    text-[#C2C2C2]
+}
