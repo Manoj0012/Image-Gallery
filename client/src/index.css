@@ -15,6 +15,9 @@ body::-webkit-scrollbar {
     text-decoration: underline;
 
 }
+.shadowa{
+    @apply shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]
+}
 .shadowb{
     @apply  shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)]
 }
@@ -26,10 +29,33 @@ body::-webkit-scrollbar {
     background-repeat: no-repeat;
     background-size: cover;
 }
-.lux {
+.banner2{
+    background-image: url(./assets/image/banner2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.font1{
     font-family: "Luxurious Script",cursive;
     font-weight:550;
     font-style: italic;
     font-size:50px;
   }
-  
+  .input{
+
+  }
+.transaction-home:hover{
+    transform: scale(0.9)
+}
+.bd{
+    border: 2px solid black;
+    @apply rounded-md
+}
+.bd-box{
+    @apply rounded-md
+     shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]
+}
+.bb{
+    @apply 
+     border-b-2
+    shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)]
+}
