@@ -75,3 +75,6 @@ body::-webkit-scrollbar {
     @apply
     text-[#C2C2C2]
 }
+.err-msg{
+    @apply text-[#ff0000]
+}

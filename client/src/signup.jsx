@@ -1,30 +1,23 @@
 import React, { useState } from 'react'
 import Logo from './logo'
-
-
-
+import { validate } from './utils/validate';
 
 function signup() {
   const [name,setName]=useState("");
   const [password,setPassword]=useState("");
   const [cpassword,setCpassword]=useState("");
+  const [err,setErr]=useState({})
+  const [submit,setSubmit]=useState(false)
   // console.log(name,password,cpassword)
   const values={
-    name:name,password:password,cpassword:cpassword
+    name:name,pass:password,cpass:cpassword
   }
-  const err={
-    errname:"",errpass:"",errcpass:""
-  }
-  function handlesubmit(values){
-    var name=values.name;
-    var pass=values.pass;
-    var cpass=values.cpass;
-    if(!name){
-      return errname="Enter the name pls"
-    }
-    else{
-      console.log("yes")
-    }
+  console.log(err)
+
+  function handlesubmit(e){
+   e.preventDefault();
+   setErr(validate(values))
+   setSubmit(true);
   }
   return (
     <div className='min-w-[100vh] h-[100vh] flex'>
@@ -36,13 +29,13 @@ function signup() {
             <div className='w-[90%] h-[60%]  flex flex-col items-center '>
               <label className='label'>Username</label>
               <input type="text" className='input-s bd'  onChange={(e)=>{setName(e.target.value)}}/>
-              <div className='w-[80%] h-[20%]  text-center '></div>
+              <div className='w-[80%] h-[20%]  text-center err-msg'>{err.name&&<p>{err.name}</p>}</div>
               <label className='label '>Password</label>
               <input type="text" className='input-s bd' onChange={(e)=>{setPassword(e.target.value)}}/>
-              <div className='w-[80%] h-[20%]  text-center '></div>
+              <div className='w-[80%] h-[20%]  text-center err-msg'>{err.pass&&<p>{err.pass}</p>}</div>
               <label className='label '>Confirm Password</label>
               <input type="text" className='input-s bd' onChange={(e)=>{setCpassword(e.target.value)}} />
-              <div className='w-[80%] h-[20%]  text-center '></div>
+              <div className='w-[80%] h-[20%]  text-center err-msg'>{err.cpass&&<p>{err.cpass}</p>}</div>
             </div>
             <div className='bg-white w-[80%] h-[15%] flex flex-col  justify-center items-center pt-2'>
               <button className='w-[70%] h-[60%] bg-black text-white bd shadowb' onClick={handlesubmit}>signup</button>
