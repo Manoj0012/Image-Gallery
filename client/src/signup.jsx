@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Logo from './logo'
 import { validate } from './utils/validate';
 
@@ -7,7 +7,7 @@ function signup() {
   const [password,setPassword]=useState("");
   const [cpassword,setCpassword]=useState("");
   const [err,setErr]=useState({})
-  const [submit,setSubmit]=useState(false)
+  const [issubmit,setSubmit]=useState(false)
   // console.log(name,password,cpassword)
   const values={
     name:name,pass:password,cpass:cpassword
@@ -19,6 +19,11 @@ function signup() {
    setErr(validate(values))
    setSubmit(true);
   }
+  useEffect(()=>{
+    if(Object.keys(err)==0&&issubmit){
+      console.log("yes")
+    }
+  })
   return (
     <div className='min-w-[100vh] h-[100vh] flex'>
       <div className='w-[50%] h-[100%] flex  flex-col items-center'>
@@ -39,7 +44,7 @@ function signup() {
             </div>
             <div className='bg-white w-[80%] h-[15%] flex flex-col  justify-center items-center pt-2'>
               <button className='w-[70%] h-[60%] bg-black text-white bd shadowb' onClick={handlesubmit}>signup</button>
-              <div className="w[70%] h-[30%] pt-2 mb-2 text-login" >Already have an account?<a href='/login' className='text-black'> Login</a></div>
+              <div className="w[70%] h-[30%] pt-2 mb-2 text-login pt-4" >Already have an account?<a href='/login' className='text-black'> Login</a></div>
             </div>
           </div>
         </div>

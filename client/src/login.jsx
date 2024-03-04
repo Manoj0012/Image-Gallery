@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Logo from './logo'
 import { loginValidate } from './utils/validate'
 function login() {
@@ -10,13 +10,18 @@ function login() {
     const values={
         name:name,pass:pass,
       }
-      console.log(err)
+    //   console.log(err)
     
       function handlesubmit(e){
        e.preventDefault();
        setErr(loginValidate(values))
        setSubmit(true);
       }
+      useEffect(()=>{
+       if(Object.keys(err).length==0&&issubmit){
+        console.log("hello")
+       }
+      })
     return (
         <div className='min-w-[100vh] h-[100vh] flex'>
             <div className='w-[50%] h-[100%] flex  flex-col items-center'>
@@ -34,7 +39,7 @@ function login() {
                             </div>
                             <div className='bg-white w-[80%] h-[15%] flex flex-col  justify-center items-center pt-2'>
                             <button className='w-[70%] h-[60%] bg-black text-white bd shadowb' onClick={handlesubmit}>Login</button>
-                            <div className="w[70%] h-[30%] pt-2 text-login" >Don't have an account?<a href='/signup' className='text-black'> Signup</a></div>
+                            <div className="w[70%] h-[30%] pt-2 text-login pt-4" >Don't have an account?<a href='/signup' className='text-black'> Signup</a></div>
                         </div>
                     </div>
                 </div>
