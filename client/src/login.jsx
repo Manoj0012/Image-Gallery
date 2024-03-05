@@ -25,12 +25,12 @@ function login() {
     return (
         <div className='min-w-[100vh] h-[100vh] flex'>
             <div className='w-[50%] h-[100%] flex  flex-col items-center'>
-                <div className='w-[100%] h-[17vh]'><Logo /></div>
+                <div className='w-[90%] h-[17vh] ml-3'><Logo /></div>
                 <div className='w-[100%] h-[75vh]  flex items-center justify-center '>
                     <div className='w-[400px] h-[550px]  flex flex-col items-center  justify-evenly bd-box '>
                         <div className='bg-white w-[90%] h-[10%]  p-1 flex items-center justify-center font1 '>Welcome Back</div>
                         <div className='w-[90%] h-[40%]  flex flex-col items-center '>
-                            <label className='label'>Email</label>
+                            <label className='label'>Username</label>
                             <input type="text" className='input-s bd' onChange={(e)=>{setName(e.target.value)}}/>
                             <div className='w-[90%] h-[20%] bg-white text-center err-msg'>{err.name&&<p>{err.name}</p>}</div>
                             <label className='label '>Password</label>

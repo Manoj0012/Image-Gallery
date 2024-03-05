@@ -8,7 +8,7 @@ export default function about(){
             <Nav/>
            </div>
            <div>
-            About as
+            About a
            </div>
         </div>
     )
