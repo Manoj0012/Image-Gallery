@@ -39,6 +39,21 @@ body::-webkit-scrollbar {
     background-repeat: no-repeat;
     background-size: cover;
 }
+.banner4{
+    background-image: url(./assets/image/banner4.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.banner5{
+    background-image: url(./assets/image/banner5.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.banner6{
+    background-image: url(./assets/image/banner6.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 .font1{
     font-family: "Luxurious Script",cursive;
     font-weight:550;

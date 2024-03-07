@@ -6,6 +6,7 @@ import Signup from './signup'
 import Login from './login'
 import Gallery from './gallery'
 import Userdashboard from './userdashboard'
+import Admindashboard from './admindashboard'
 function App() {
   return (
     <Routes>
@@ -14,7 +15,8 @@ function App() {
       <Route path="/signup" element={<Signup/>}></Route>
       <Route path="/login" element={<Login/>}></Route>
       <Route path='/gallery' element={<Gallery/>}></Route>
-      <Route path='/userdashboard' element={<Userdashboard/>}></Route>
+      <Route path='/user' element={<Userdashboard/>}></Route>
+      <Route path='/admin' element={<Admindashboard/>}></Route>    
     </Routes>
   )
 }
