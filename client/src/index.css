@@ -118,3 +118,10 @@ body::-webkit-scrollbar {
 ::-webkit-scrollbar-corner{
     background: transparent;
 }
+.Border{
+    border-radius:4px;
+    border:solid #FFFFFF 2px;
+}
+.red{
+    @apply bg-[#ff0000]
+}
