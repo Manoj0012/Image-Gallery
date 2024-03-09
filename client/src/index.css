@@ -122,6 +122,15 @@ body::-webkit-scrollbar {
     border-radius:4px;
     border:solid #FFFFFF 2px;
 }
+.Borderl{
+    @apply shadow-[rgba(0,_0,_0,_0.4)_0px_30px_90px]
+}
 .red{
     @apply bg-[#ff0000]
+}
+.Border:hover{
+    transform: scale(0.9);
+}
+.logout:hover{
+    transform: scale(0.9);
 }

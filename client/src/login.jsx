@@ -39,7 +39,7 @@ function login() {
                             </div>
                             <div className='bg-white w-[80%] h-[15%] flex flex-col  justify-center items-center pt-2'>
                             <button className='w-[70%] h-[60%] bg-black text-white bd shadowb' onClick={handlesubmit}>Login</button>
-                            <div className="w[70%] h-[30%] pt-2 text-login pt-4" >Don't have an account?<a href='/signup' className='text-black'> Signup</a></div>
+                            <div className="logout w[70%] h-[30%] pt-2 text-login pt-4" >Don't have an account?<a href='/signup' className='text-black'> Signup</a></div>
                         </div>
                     </div>
                 </div>
