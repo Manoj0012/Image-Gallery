@@ -11,8 +11,7 @@ function addadmin() {
         <input className='w-[100%] h-[20%] bd-box' type='text'/>
       </div>
       <div className='w-[100%] h-[30%] flex justify-evenly items-end'>
-        <div className='w-[45%] h-[25%] text-center flex justify-center items-center text-white mb-5 bd-box red'>Delete</div>
-        <div className='w-[45%] h-[25%] text-center flex justify-center items-center bg-white mb-5 bd-box'>Edit</div>
+        <div className='w-[45%] h-[25%] text-center flex justify-center items-center bg-white mb-5 bd-box'>ADD</div>
       </div>
     </div>
   )
