@@ -134,3 +134,6 @@ body::-webkit-scrollbar {
 .logout:hover{
     transform: scale(0.9);
 }
+.bb{
+border-radius: 10px;
+}
