@@ -1,18 +1,19 @@
 import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import Manageuser from './manageuser';
+import Postcard from './postcard';
 
 function admindashboard() {
     const controlbar=[
-        {title:"Manage user",state:"Manage User"}, {title:"Manage Post",state:"Manage Post"}, {title:"Add Admin",state:"Add Admin"}
+        {title:"My Post",state:"My Post"}, {title:"Manage user",state:"Manage User"}, {title:"Manage Post",state:"Manage Post"}, {title:"Add Admin",state:"Add Admin"}
     ]
-    const[state,SetState]=useState("Manage");
+    const[state,SetState]=useState("My Post");
     const profiledata=[1,2,3,4,5]
     console.log(state)
     
   return (
     <div className='min-w-[100vh] min-h-[100vh] banner5 flex '>
-       <div className='w-[35%] h-[100vh]  flex flex-col justify-evenly shadowb bg-black opacity-75 banner6 Borderl'>
+       <div className='w-[25%] h-[100vh]  flex flex-col justify-evenly  bg-black opacity-75 banner5 Borderl'>
         <div className='w-[100%] h-[20%] '>
             <div className='w-[100%] h-[80%] '></div>
             <div className='w-[100%] h-[20%] flex justify-center items-center'>
@@ -33,18 +34,31 @@ function admindashboard() {
             <button className='logout w-[60%] h-[50%] bg-black bd-box text-white red'>Logout</button>
         </div>
        </div>
-       <div className='w-[65%] h-[100vh] banner6'>
+       <div className='w-[75%] h-[100vh] '>
            <div className='w-[100%] h-[20%] flex justify-center items-end '>
             <p className='text-white font1 mb-4'>{state}</p>
            </div>
            <div className='w-[100%] h-[80%]  flex  justify-center items-center bg-white   '>
-              <div className='w-[95%] h-[95%]  bd-box grid grid-cols-2 gap-2 justify-items-center banner5 over '>
-           {/* {state="Manage User"&&<div> 
+           {state=="My Post"&&<div className='w-[99%] h-[99%]  bd-box grid grid-cols-2 gap-2 justify-items-center banner5 over '>
            {profiledata.map((items,index)=>{
-            return(console.log(items))
+            return(<Postcard key={index}/>)
            })}
-            </div>  } */}
-              </div>
+              </div>}
+              {state=="Manage User"&&<div className='w-[99%] h-[99%]  bd-box grid grid-cols-4 gap-2 justify-items-center banner5 over '>
+           {profiledata.map((items,index)=>{
+            return(<Manageuser key={index}/>)
+           })}
+              </div>}
+              {state=="Manage Post"&&<div className='w-[99%] h-[99%]  bd-box grid grid-cols-4 gap-2 justify-items-center banner5 over '>
+           {profiledata.map((items,index)=>{
+            return(<Manageuser key={index}/>)
+           })}
+              </div>}
+              {state=="Add Admin"&&<div className='w-[98%] h-[98%]  bd-box grid grid-cols-4 gap-2 justify-items-center banner5 over '>
+           {profiledata.map((items,index)=>{
+            return(<Manageuser key={index}/>)
+           })}
+              </div>}
            </div>
        </div>
     </div>
