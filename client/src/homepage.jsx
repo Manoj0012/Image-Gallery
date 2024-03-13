@@ -8,7 +8,7 @@ export default function home(){
             <Nav/>
            </div>
            <div className=' w-[100%] h-[93vh] flex items-center justify-center'>
-            <div className='w-[98%] h-[95%] bg-white banner3 rounded-md shadowb flex flex-col justify-end'>
+            <div className='w-[98%] h-[98%] bg-white banner3 rounded-md shadowb flex flex-col justify-end'>
              <div className=' w-[100%] h-[40%] flex items-center justify-evenly '>
                 <div className='bg-main w-[30%] h-[70%] shadowb rounded-md transaction-home'></div>
                 <div className='bg-main w-[30%] h-[70%] shadowb rounded-md transaction-home'></div>
