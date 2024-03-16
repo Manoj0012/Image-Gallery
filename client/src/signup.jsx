@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Logo from './logo'
 import { validate } from './utils/validate';
+import apihelper from "axios"
 
 function signup() {
   const [name,setName]=useState("");
@@ -21,7 +22,13 @@ function signup() {
   }
   useEffect(()=>{
     if(Object.keys(err)==0&&issubmit){
-      console.log("yes")
+     apihelper.post("http://localhost:9000/user/signin",{name:name,password:password})
+     .then((res)=>{
+      console.log(res)
+     })
+     .catch((err)=>{
+      console.log(err)
+     })
     }
   })
   return (
