@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Logo from './logo'
 import { validate } from './utils/validate';
-import apihelper from "axios"
+import {api} from './utils/api'
 import { toast } from 'react-toastify';
 import { Navigate, useNavigate } from 'react-router-dom';
 function signup() {
@@ -24,7 +24,7 @@ function signup() {
   }
   useEffect(()=>{
     if(Object.keys(err)==0&&issubmit){
-     apihelper.post("http://localhost:9000/user/signin",{name:name,password:password})
+     api.post("/user/signin",{name:name,password:password})
      .then((res)=>{
       const resdata=res.data
       console.log(res)

@@ -23,4 +23,25 @@ router.post("/signin",async(req,res)=>{
     console.log(err)
     }
     })
+router.post("/login",async(req,res)=>{
+const name=req.body.name
+const pass=req.body.password
+try{
+const check=await User.findOne({username:name})
+    if(!check){
+   return res.send("!user")
+    }
+  const valid=bcrypt.compare(pass,check.password)
+   if(valid){
+    res.status(202).send("valid")
+   }
+   else{
+     res.status(203).send("Password doesnt match")
+   }
+}
+catch(err){
+    res.send(err)
+}
+
+})
 module.exports = router;

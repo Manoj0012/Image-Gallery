@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import Logo from './logo'
 import { loginValidate } from './utils/validate'
+import { api } from './utils/api'
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify';
 function login() {
+    const nav =useNavigate()
     const [name,setName]=useState("")
     const[pass,setPass]=useState("")
     const[err,setErr]=useState({})
@@ -17,9 +21,26 @@ function login() {
        setErr(loginValidate(values))
        setSubmit(true);
       }
+      
+        
+    
       useEffect(()=>{
        if(Object.keys(err).length==0&&issubmit){
-        console.log("hello")
+        api.post("/user/login",{name:name,password:pass})
+        .then((res)=>{
+         const resdata=res.data
+         if(resdata==="valid"){
+            nav("/user")
+         }
+         else if(resdata=="!user"){
+            toast.error("User doesn't exits")
+            nav("/signup")
+         }
+         else{
+         toast.error("password doesn't match")
+         }
+        })
+        .catch((error)=>{console.log(error)})
        }
       })
     return (

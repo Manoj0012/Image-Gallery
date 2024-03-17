@@ -1,0 +1,7 @@
+import axios from 'axios';
+
+axios.defaults.baseURL="http://localhost:9000"
+export default axios
+export{
+    axios as api
+}
