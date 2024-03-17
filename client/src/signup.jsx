@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react'
 import Logo from './logo'
 import { validate } from './utils/validate';
 import apihelper from "axios"
-
+import { toast } from 'react-toastify';
+import { Navigate, useNavigate } from 'react-router-dom';
 function signup() {
+  const nav=useNavigate();
   const [name,setName]=useState("");
   const [password,setPassword]=useState("");
   const [cpassword,setCpassword]=useState("");
@@ -24,7 +26,14 @@ function signup() {
     if(Object.keys(err)==0&&issubmit){
      apihelper.post("http://localhost:9000/user/signin",{name:name,password:password})
      .then((res)=>{
+      const resdata=res.data
       console.log(res)
+      if(resdata=="user created"){ toast.success(resdata)
+      nav('/login')
+      }
+      else{
+        toast.error(resdata)
+      }
      })
      .catch((err)=>{
       console.log(err)

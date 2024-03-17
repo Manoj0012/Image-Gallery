@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom'
 import Home from './homepage'
 import About from './aboutas'
 import Signup from './signup'
@@ -7,8 +7,18 @@ import Login from './login'
 import Gallery from './gallery'
 import Userdashboard from './userdashboard'
 import Admindashboard from './admindashboard'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { Navigate } from "react-router-dom";
 function App() {
+  const nav =  useNavigate();
+  window.nav = nav;
+    const toastContainerOptions = {
+    position: 'top-right',
+    autoClose: 1000, 
+  };
   return (
+    <>
     <Routes>
       <Route path="/" element={<Home/>}></Route>
       <Route path="/about" element={<About/>}></Route>
@@ -21,6 +31,8 @@ function App() {
       <Route path='/admin/post' element={<Admindashboard/>}></Route>
       <Route path='/admin/addadmin' element={<Admindashboard/>}></Route>    
     </Routes>
+    <ToastContainer {...toastContainerOptions} />
+    </>
   )
 }
 
