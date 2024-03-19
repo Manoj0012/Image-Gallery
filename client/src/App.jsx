@@ -1,12 +1,12 @@
 import { useState } from 'react'
 import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom'
-import Home from './homepage'
-import About from './aboutas'
-import Signup from './signup'
-import Login from './login'
-import Gallery from './gallery'
-import Userdashboard from './userdashboard'
-import Admindashboard from './admindashboard'
+import Home from './screens/homepage'
+import About from './screens/aboutas'
+import Signup from './screens/signup'
+import Login from './screens/login'
+import Gallery from './screens/gallery'
+import Userdashboard from './screens/userdashboard'
+import Admindashboard from './screens/admindashboard'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Navigate } from "react-router-dom";

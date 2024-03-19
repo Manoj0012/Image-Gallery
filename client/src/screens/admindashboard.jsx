@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import Manageuser from './manageuser';
-import Postcard from './postcard';
-import Manageposts from './manageposts';
+import Manageuser from '../components/manageuser';
+import Postcard from '../components/postcard';
+import Manageposts from '../components/manageposts';
 import Addadmin from './addadmin';
 
 function admindashboard() {

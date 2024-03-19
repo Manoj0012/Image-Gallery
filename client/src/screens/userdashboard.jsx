@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Postcard from './postcard'
+import Postcard from '../components/postcard'
 function userdashboard() {
     const data=[{title:"image"},{title:"image1"},{title:"image2"},{title:"image3"},{title:"image4"},{title:"image5"}]
     

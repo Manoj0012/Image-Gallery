@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import Logo from './logo'
-import { validate } from './utils/validate';
-import {api} from './utils/api'
+import Logo from '../components/logo'
+import { validate } from '../utils/validate';
+import {api} from '../utils/api'
 import { toast } from 'react-toastify';
 import { Navigate, useNavigate } from 'react-router-dom';
 function signup() {

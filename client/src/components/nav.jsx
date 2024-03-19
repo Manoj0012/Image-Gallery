@@ -7,12 +7,12 @@ export default function nav(){
     ]
     return(
         <div className='w-[100%] h-[100%] flex items-center  bg-main justify-evenly pt-3'>
-          <div className='left w-[60%] h-[100%]  flex items-center '><Logo/></div>
-          <div className='right w-[40%] h-[100%]  text-black flex items-center justify-evenly pl-10 mt-3 font2'>
+          <div className='left w-[60%] h-[100%]  flex items-center mt-4'><Logo/></div>
+          <div className='right w-[35%] h-[100%]  text-black flex items-center justify-evenly  mt-3 font2'>
             {
                 navbar.map((items,index)=>{
                     return(
-                        <NavLink className="" key={index} to={items.Link}>{items.title}</NavLink>
+                        <NavLink className="text-sm" key={index} to={items.Link}>{items.title}</NavLink>
                     )
                 })
             }
