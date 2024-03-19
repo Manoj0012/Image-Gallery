@@ -4,6 +4,7 @@ const cors=require("cors")
 const app=express();
 const bodyparser=require('body-parser')
 const mongo=require("mongoose")
+const{Auth}=require('./utils/middleware')
 app.use(bodyparser.urlencoded({extended:true}))
 app.use(express.json())
 app.use(cors())
@@ -15,7 +16,7 @@ mongo.connect("mongodb://localhost:27017/photoholic")
 .catch((err)=>{console.log(err)})
 
 
-app.get("/",async(req,res)=>{
+app.get("/",Auth,(req,res)=>{
 console.log("hello");
 res.send("changed")
 })
