@@ -2,6 +2,7 @@ const router =require('express').Router()
 const User=require("../models/userschema")
 const bodyparser=require('body-parser')
 const bcrypt=require('bcrypt')
+const jwt=require('jsonwebtoken')
 router.use(bodyparser.json());
 router.post("/signin",async(req,res)=>{
     try{
@@ -33,7 +34,10 @@ const check=await User.findOne({username:name})
     }
   const valid=bcrypt.compare(pass,check.password)
    if(valid){
-    res.status(202).send("valid")
+    const token=jwt.sign({User:check.username},"private-key")
+    res.header('auth',token).send(token)
+    console.log(token)
+    return res.status(202).send("valid")
    }
    else{
      res.status(203).send("Password doesnt match")

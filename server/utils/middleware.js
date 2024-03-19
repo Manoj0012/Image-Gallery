@@ -1,6 +1,9 @@
+const express = require("express");
+const jwt=require('jsonwebtoken')
 const Auth=(req,res,next)=>{
 console.log("middleware")
-return res.send("hello")
+const token =req.header('Authorization')
+console.log(token)
 next();
 }
 
