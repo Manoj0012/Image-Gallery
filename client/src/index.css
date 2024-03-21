@@ -137,3 +137,17 @@ body::-webkit-scrollbar {
 .bb{
 border-radius: 10px;
 }
+.Add{
+    @apply bg-[#2b82cf]
+}
+.flexb{
+display: flex;
+justify-content: center;
+align-items: center;
+}
+.flex-c{
+flex-direction:column;
+}
+.green{
+    @apply bg-[#5dcf74]
+}
