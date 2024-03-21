@@ -2,6 +2,8 @@ const express =require("express")
 const bd =require("body-parser")
 const cors=require("cors")
 const app=express();
+const cookieparser = require('cookie-parser')
+app.use(cookieparser());
 const bodyparser=require('body-parser')
 const mongo=require("mongoose")
 const{Auth}=require('./utils/middleware')
@@ -17,7 +19,7 @@ mongo.connect("mongodb://localhost:27017/photoholic")
 
 
 app.get("/",Auth,(req,res)=>{
-console.log("hello");
+console.log(req.cookies);
 res.send("changed")
 })
 app.listen(9000,()=>{

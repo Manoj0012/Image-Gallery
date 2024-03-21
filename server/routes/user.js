@@ -3,6 +3,7 @@ const User=require("../models/userschema")
 const bodyparser=require('body-parser')
 const bcrypt=require('bcrypt')
 const jwt=require('jsonwebtoken')
+const cookie =require('cookie')
 router.use(bodyparser.json());
 router.post("/signin",async(req,res)=>{
     try{
@@ -29,18 +30,18 @@ const name=req.body.name
 const pass=req.body.password
 try{
 const check=await User.findOne({username:name})
+
     if(!check){
    return res.send("!user")
     }
   const valid=bcrypt.compare(pass,check.password)
    if(valid){
     const token=jwt.sign({User:check.username},"private-key")
-    res.header('auth',token).send(token)
-    console.log(token)
-    return res.status(202).send("valid")
+    //    res.cookie("user",token,{httpOnly:true}).send("valid")
+       res.status(201).send("valid")
    }
    else{
-     res.status(203).send("Password doesnt match")
+     return res.status(203).send("Password doesnt match")
    }
 }
 catch(err){
