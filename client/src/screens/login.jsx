@@ -29,15 +29,19 @@ function login() {
         api.post("/user/login",{name:name,password:pass})
         .then((res)=>{
          const resdata=res.data
-         if(resdata==="valid"){
-            nav("/user")
+         if(resdata==="!valid"){
+            toast.error("password doesn't match")
+           
          }
          else if(resdata=="!user"){
             toast.error("User doesn't exits")
             nav("/signup")
          }
          else{
-         toast.error("password doesn't match")
+            const token=res.data
+            localStorage.setItem("token",token)
+         nav("/user")
+         console.log(res.data)
          }
         })
         .catch((error)=>{console.log(error)})

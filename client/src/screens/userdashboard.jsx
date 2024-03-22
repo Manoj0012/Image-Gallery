@@ -1,12 +1,32 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Postcard from '../components/postcard'
 import Addpost from '../components/addpost'
 import ReactModal from 'react-modal';
+import { api } from '../utils/api';
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 function userdashboard() {
+    const nav =useNavigate()
+    const [name,setName]=useState("")
     const data=[{title:"image"},{title:"image1"},{title:"image2"},{title:"image3"},{title:"image4"},{title:"image5"},{title:"image5"}]
     const[ismodel,setModel]=useState(false)
     const isOpen  = () => setModel(true);
     const isClose  = () => setModel(false);
+    useEffect(()=>{
+        api.post('/user/check')
+        .then((res)=>{
+            if(res.status==200){
+            var values=res.data
+              setName(values.User)
+            }
+            else{
+                toast.error("heloo")
+                nav("/")
+            }
+        })
+        .catch((err)=>{console.log(err)})
+
+    },[])
     return (
         <div className='min-w-[100vh] min-h-[100vh] '>
             <div className='w-[100%] h-[20vh] bg-white banner6 shadowb'>
@@ -21,9 +41,9 @@ function userdashboard() {
                     <div className='w-[100%] h-[80vh] flex justify-center items-center '>
                      <div className='w-[98%] h-[90%] mt-9 bd-box  banner5 bg-white flex-cols'>
                        <div className='w-[100%] h-[97%] grid grid-cols-3 justify-items-center over Scroll'>
-                         {/* {data.map((items,index)=>{
+                         {data.map((items,index)=>{
                         return(<Postcard key={index} />)
-                        })} */}
+                        })}
          <ReactModal isOpen={ismodel} ariaHideApp={false} style={{
         overlay: {
             backgroundColor: 'rgba(0,0,0,0.4)',

@@ -4,6 +4,7 @@ const bodyparser=require('body-parser')
 const bcrypt=require('bcrypt')
 const jwt=require('jsonwebtoken')
 const cookie =require('cookie')
+const {Auth}=require('../utils/middleware')
 router.use(bodyparser.json());
 router.post("/signin",async(req,res)=>{
     try{
@@ -35,13 +36,12 @@ const check=await User.findOne({username:name})
    return res.send("!user")
     }
   const valid=bcrypt.compare(pass,check.password)
-   if(valid){
-    const token=jwt.sign({User:check.username},"private-key")
-    //    res.cookie("user",token,{httpOnly:true}).send("valid")
-       res.status(201).send("valid")
+   if(!valid){
+    return res.status(203).send("Password doesnt match")
    }
    else{
-     return res.status(203).send("Password doesnt match")
+    const token=jwt.sign({User:check.username},"private-key")   
+       res.status(201).send(token)
    }
 }
 catch(err){
@@ -49,4 +49,8 @@ catch(err){
 }
 
 })
+router.post("/check",Auth,(req,res)=>{
+    res.status(201)
+})
+
 module.exports = router;

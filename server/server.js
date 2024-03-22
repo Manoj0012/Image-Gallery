@@ -16,12 +16,6 @@ app.use("/post",require('./routes/post'))
 mongo.connect("mongodb://localhost:27017/photoholic")
 .then(()=>{console.log("database connected")})
 .catch((err)=>{console.log(err)})
-
-
-app.get("/",Auth,(req,res)=>{
-console.log(req.cookies);
-res.send("changed")
-})
 app.listen(9000,()=>{
     console.log("http://localhost:9000")
 });
