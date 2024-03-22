@@ -3,13 +3,6 @@ import Nav from '../components/nav'
 import {NavLink} from 'react-router-dom';
 import { api } from '../utils/api';
 export default function home(){
-    useEffect(()=>{
-        console.log("ggg")
-        api.get("/")
-        .then((res)=>{
-            console.log(res.data)
-        })
-    })
     return(
         <div className='min-w-[100vh] min-h-[100vh] flex flex-col items-center'>
            <div className=' w-[95%] h-[5vh] bg-main'>

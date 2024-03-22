@@ -15,18 +15,18 @@ function userdashboard() {
     useEffect(()=>{
         api.post('/user/check')
         .then((res)=>{
-            if(res.status==200){
-            var values=res.data
-              setName(values.User)
+            if(res.data=='invalid'){
+                toast.error("Unauthorized access")
+                nav("/login")
             }
-            else{
-                toast.error("heloo")
-                nav("/")
+            else {
+                var values=res.data
+                setName(values.User)
             }
         })
         .catch((err)=>{console.log(err)})
 
-    },[])
+    })
     return (
         <div className='min-w-[100vh] min-h-[100vh] '>
             <div className='w-[100%] h-[20vh] bg-white banner6 shadowb'>
