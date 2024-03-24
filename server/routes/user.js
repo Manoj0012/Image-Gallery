@@ -3,18 +3,18 @@ const User=require("../models/userschema")
 const bodyparser=require('body-parser')
 const bcrypt=require('bcrypt')
 const jwt=require('jsonwebtoken')
-const cookie =require('cookie')
 const {Auth}=require('../utils/middleware')
 router.use(bodyparser.json());
 router.post("/signin",async(req,res)=>{
     try{
         const name=req.body.name;
         const pass=req.body.password
+        const role="user"
         const bcryptpass=await bcrypt.hash(pass,10)
         const check=await User.findOne({username:name})
         console.log(check)
         if(!check){
-            const user=new User({username:name,password:bcryptpass})
+            const user=new User({username:name,password:bcryptpass,role:role})
             const result=await user.save()
             res.status(201).send("user created")
         }
@@ -40,8 +40,10 @@ const check=await User.findOne({username:name})
     return res.status(203).send("Password doesnt match")
    }
    else{
+    
     const token=jwt.sign({User:check.username},"private-key")   
-       res.status(201).send(token)
+    const values={role:"admin",Token:token}
+       res.status(201).send(values)
    }
 }
 catch(err){

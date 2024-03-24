@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Postcard from '../components/postcard'
 import Addpost from '../components/addpost'
+import Goback from '../assets/image/arrorback.png'
 import ReactModal from 'react-modal';
 import { api } from '../utils/api';
 import { useNavigate } from 'react-router-dom'
@@ -30,10 +31,12 @@ function userdashboard() {
     return (
         <div className='min-w-[100vh] min-h-[100vh] '>
             <div className='w-[100%] h-[20vh] bg-white banner6 shadowb'>
-                <div className='w-[100%] h-[90%]  flex justify-start items-end'>
+                <div className='w-[100%] h-[90%]  flex flex-col justify-start items-evenly'>
+                    <a className='w-[30%] h-[50%]' href='/login'><img className='w-[30px] h-[30px] m-4' src={Goback}/></a>
                     <div className='w-[30%] h-[50%]  text-white flex  justify-center  items-center '><p className='p-2 ml-4 mr-2 font1'>Hi, <span className='font1'>{name}</span></p></div>
                 </div>
                 <div className='w-[100%] h-[10%] flex items-center justify-center'>
+                    
                     <div className='w-[200px] h-[150px] bg-white bd-box mb-14  '>
                         <img className='w-[100%] h-[100%] bd-box ' src=''></img>
                     </div>

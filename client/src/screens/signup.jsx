@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import Logo from '../components/logo'
+import Goback from '../assets/image/goback.png'
 import { validate } from '../utils/validate';
 import {api} from '../utils/api'
 import { toast } from 'react-toastify';
@@ -41,10 +42,10 @@ function signup() {
     }
   })
   return (
-    <div className='min-w-[100vh] h-[100vh] flex'>
+    <div className='min-w-[100vh] h-[100vh] flex '>
       <div className='w-[50%] h-[100%] flex  flex-col items-center'>
         <div className='w-[90%] h-[17vh] '><Logo /></div>
-        <div className='w-[100%] h-[75vh]  flex items-center justify-center '>
+        <div className='w-[100%] h-[75vh]  flex  flex-col items-center justify-center '>
           <div className='w-[400px] h-[600px]  flex flex-col items-center  justify-evenly bd-box '>
             <div className='bg-white w-[90%] h-[10%] text-start p-1 flex items-center justify-center font1'>Get Started Now</div>
             <div className='w-[90%] h-[60%]  flex flex-col items-center '>
@@ -63,6 +64,7 @@ function signup() {
               <div className="w[70%] h-[30%] pt-2 mb-2 text-login pt-4" >Already have an account?<a href='/login' className='text-black'> Login</a></div>
             </div>
           </div>
+          <a className=' bg-black w-[65px] h-[35px] bd-box mt-4 text-white flex justify-center items-center' href='/'><img className="w-[25px] h-[25px] mr-1 " src={Goback}/></a>
         </div>
       </div>
       <div className='w-[50%] h-[100%] banner2 '></div>

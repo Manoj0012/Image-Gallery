@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Logo from '../components/logo'
 import { loginValidate } from '../utils/validate'
 import { api } from '../utils/api'
+import Goback from '../assets/image/goback.png'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify';
 function login() {
@@ -38,9 +39,15 @@ function login() {
             nav("/signup")
          }
          else{
-            const token=res.data
+            const values=res.data
+            const role=values.role
+            const token=values.Token
+            if(role=='admin'){
             localStorage.setItem("token",token)
-         nav("/user")
+         nav("/admin")}
+         else{
+            nav("/user")
+         }
          console.log(res.data)
          }
         })
@@ -51,7 +58,7 @@ function login() {
         <div className='min-w-[100vh] h-[100vh] flex'>
             <div className='w-[50%] h-[100%] flex  flex-col items-center'>
                 <div className='w-[90%] h-[17vh] ml-3'><Logo /></div>
-                <div className='w-[100%] h-[75vh]  flex items-center justify-center '>
+                <div className='w-[100%] h-[75vh]  flex items-center justify-center flex-col'>
                     <div className='w-[400px] h-[550px]  flex flex-col items-center  justify-evenly bd-box '>
                         <div className='bg-white w-[90%] h-[10%]  p-1 flex items-center justify-center font1 '>Welcome Back</div>
                         <div className='w-[90%] h-[40%]  flex flex-col items-center '>
@@ -67,6 +74,7 @@ function login() {
                             <div className="logout w[70%] h-[30%] pt-2 text-login pt-4" >Don't have an account?<a href='/signup' className='text-black'> Signup</a></div>
                         </div>
                     </div>
+                    <a className='bg-black  w-[65px] h-[35px] bd-box mt-4 text-white flex justify-center items-center' href='/'><img className="w-[25px] h-[25px] mr-1 " src={Goback}/></a>
                 </div>
             </div>
             <div className='w-[50%] h-[100%] banner2 '></div>
