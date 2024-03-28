@@ -42,7 +42,7 @@ const check=await User.findOne({username:name})
    else{
     
     const token=jwt.sign({User:check.username},"private-key")   
-    const values={role:"admin",Token:token}
+    const values={role:check.role,Token:token}
        res.status(201).send(values)
    }
 }

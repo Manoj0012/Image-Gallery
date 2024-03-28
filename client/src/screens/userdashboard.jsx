@@ -16,13 +16,20 @@ function userdashboard() {
     useEffect(()=>{
         api.post('/user/check')
         .then((res)=>{
-            if(res.data=='invalid'){
+            const data=res.data
+            console.log(res.data)
+            if(data=='invalid'){
                 toast.error("Unauthorized access")
                 nav("/login")
             }
             else {
+                if(data.role=="user"){
                 var values=res.data
-                setName(values.User)
+                setName(values.username)}
+                else{
+                    toast.error("Only users")
+                    nav("/")}
+                
             }
         })
         .catch((err)=>{console.log(err)})
@@ -38,7 +45,7 @@ function userdashboard() {
                 <div className='w-[100%] h-[10%] flex items-center justify-center'>
                     
                     <div className='w-[200px] h-[150px] bg-white bd-box mb-14  '>
-                        <img className='w-[100%] h-[100%] bd-box ' src=''></img>
+                        <img className='w-[100%] h-[100%] bd-box flex justify-end' src=''></img>
                     </div>
                     </div>
                     <div className='w-[100%] h-[80vh] flex justify-center items-center '>

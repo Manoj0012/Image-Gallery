@@ -38,14 +38,17 @@ function login() {
             toast.error("User doesn't exits")
             nav("/signup")
          }
-         else{
+         else {
             const values=res.data
             const role=values.role
             const token=values.Token
+            console.log(role)
             if(role=='admin'){
             localStorage.setItem("token",token)
-         nav("/admin")}
+            nav("/admin")
+        }
          else{
+            localStorage.setItem("token",token)
             nav("/user")
          }
          console.log(res.data)

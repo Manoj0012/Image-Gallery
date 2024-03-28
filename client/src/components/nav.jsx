@@ -2,9 +2,12 @@ import React, { useEffect, useState } from 'react';
 import {NavLink} from 'react-router-dom';
 import Logo from './logo'
 import { api } from '../utils/api';
+import { useNavigate } from 'react-router-dom'
 export default function nav(){
+    const nav=useNavigate();
     const [state,setState]=useState(false)
     const [name,setName]=useState('')
+    const [Link,setLink]=useState('')
     let navbar=[
         {title:"Home",Link:"/"},{title:"Aboutus",Link:"/about"},{title:"Gallery",Link:"/gallery"}
     ]
@@ -16,7 +19,12 @@ export default function nav(){
                 setState(false)
             }
             else{
-                setName(check.User)
+                setName(check.username)
+                if(check.role=="admin"){
+                    setLink("/admin")
+                }else{
+                setLink("/user")
+                }
                 setState(true)
             }
         })
@@ -33,7 +41,7 @@ export default function nav(){
                 })
             }
             {state==false&&<NavLink className="text-sm"  to={"/signup"}>Signup</NavLink>}
-            {state==true&&<NavLink className="text-sm font2"  to={"/user"}>Hi, {name}</NavLink>}
+            {state==true&&<NavLink className="text-sm font2"  to={Link}>Hi, {name}</NavLink>}
           </div>
         </div>
     )
