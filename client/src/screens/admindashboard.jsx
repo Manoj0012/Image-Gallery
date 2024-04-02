@@ -26,12 +26,15 @@ function admindashboard() {
                 nav("/login")
             }
             else {
-                var values=res.data
-                console.log(values)
-                setName(values.username)
+                
                 if(data.role=="user"){
                  nav("/user")
                  toast.error("Only admin can access")
+                }
+                else{
+                    var values=res.data
+                console.log(values)
+                setName(values.username)
                 }
             }
         })
@@ -72,11 +75,8 @@ function admindashboard() {
             return(<Postcard key={index}/>)
            })}
               </div>}
-              {state=="Manage User"&&<div className='w-[99%] h-[99%]  bd-box grid grid-cols-4 gap-2 justify-items-center bg-white over banner5 '>
-           {profiledata.map((items,index)=>{
-            return(<Manageuser key={index}/>)
-           })}
-              </div>}
+              {state=="Manage User"&&
+           <Manageuser/>}
               {state=="Manage Post"&&<div className='w-[99%] h-[99%]  bd-box grid grid-cols-2 gap-2 justify-items-center bg-white over banner5'>
            {profiledata.map((items,index)=>{
             return(<Manageposts key={index}/>)
