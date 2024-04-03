@@ -107,6 +107,9 @@ body::-webkit-scrollbar {
 .over{
     overflow: scroll;
 }
+.menu:hover{
+    transform: scale(0.9)
+}
 ::-webkit-scrollbar{
     width: 10px;
     

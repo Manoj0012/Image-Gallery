@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Postcard from '../components/postcard'
 import Addpost from '../components/addpost'
 import Goback from '../assets/image/arrorback.png'
+import Menubar from '../assets/image/menu.png'
 import ReactModal from 'react-modal';
 import { api } from '../utils/api';
 import { useNavigate } from 'react-router-dom'
@@ -11,8 +12,11 @@ function userdashboard() {
     const [name,setName]=useState("")
     const data=[{title:"image"},{title:"image1"},{title:"image2"},{title:"image3"},{title:"image4"},{title:"image5"},{title:"image5"}]
     const[ismodel,setModel]=useState(false)
+    const[menumodel,setMenumodel]=useState(false)
     const isOpen  = () => setModel(true);
     const isClose  = () => setModel(false);
+    const isMenuopen  = () => setMenuModel(true);
+    const isMenuclose  = () => setMenuModel(false);
     useEffect(()=>{
         api.post('/user/check')
         .then((res)=>{
@@ -37,15 +41,43 @@ function userdashboard() {
     })
     return (
         <div className='min-w-[100vh] min-h-[100vh] '>
-            <div className='w-[100%] h-[20vh] bg-white banner6 shadowb'>
+            <div className='w-[100%] h-[20vh] bg-white banner6 shadowb '>
                 <div className='w-[100%] h-[90%]  flex flex-col justify-start items-evenly'>
-                    <a className='w-[30%] h-[50%]' href='/login'><img className='w-[30px] h-[30px] m-4' src={Goback}/></a>
+                    <div className='w-[100%] h-[50%] flex justify-evenly'>
+                    <a className='w-[30%] h-[100%]' href='/login'><img className='w-[30px] h-[30px] m-4' src={Goback}/></a>
+                    <div className='w-[70%] h-[100%] flex justify-end'>
+                        <img src={Menubar} className='w-[30px] h-[30px] m-4 menu'/>
+                        <ReactModal isOpen={true} ariaHideApp={false} style={{
+        overlay: {
+            backgroundColor: 'rgba(0,0,0,0.4)',
+            zIndex: 9
+        }, content: {
+            background:'transparent',
+            display:'flex',
+            justifyContent:'center',
+            alignItems:'center',
+            width: '170px',
+            height: '250px',
+            top: '12%',
+            left: '90%',
+            transform: 'translate(-50%, -50%)',
+            border:'none'     
+          }      
+    }} >
+        <div className='w-[170px] h-[150px] bg-white flex flex-col justify-evenly items-center '>
+            <button className='w-[90%] h-[20%] mt-2 bd-box text-center menu'>Add image</button>
+            <button className='w-[90%] h-[20%] mb-2 red bd-box text-center text-white menu' onClick={isMenuopen()}>Logout</button>
+        </div>
+    </ReactModal>
+                    </div>
+                    </div>
                     <div className='w-[30%] h-[50%]  text-white flex  justify-center  items-center '><p className='p-2 ml-4 mr-2 font1'>Hi, <span className='font1'>{name}</span></p></div>
                 </div>
+            
                 <div className='w-[100%] h-[10%] flex items-center justify-center'>
                     
-                    <div className='w-[200px] h-[150px] bg-white bd-box mb-14  '>
-                        <img className='w-[100%] h-[100%] bd-box flex justify-end' src=''></img>
+                    <div className='w-[200px] h-[150px] bg-white bd-box mb-14  flex'>       
+                            <img src='' className='w-[100%] h-[100%] bg-white bd-box'/>
                     </div>
                     </div>
                     <div className='w-[100%] h-[80vh] flex justify-center items-center '>
