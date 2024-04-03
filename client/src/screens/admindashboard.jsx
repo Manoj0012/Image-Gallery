@@ -77,11 +77,8 @@ function admindashboard() {
               </div>}
               {state=="Manage User"&&
            <Manageuser/>}
-              {state=="Manage Post"&&<div className='w-[99%] h-[99%]  bd-box grid grid-cols-2 gap-2 justify-items-center bg-white over banner5'>
-           {profiledata.map((items,index)=>{
-            return(<Manageposts key={index}/>)
-           })}
-              </div>}
+               {state=="Manage Post"&&
+           <Manageposts/>}
               {state=="Add Admin"&&<div className='w-[99%] h-[99%]  bd-box flex justify-center items-center bg-white over banner5 '>
            <Addadmin/>
               </div>}

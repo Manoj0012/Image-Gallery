@@ -37,8 +37,13 @@ router.get("/manageuser",async(req,res)=>{
 })
 router.post("/manageuser/delete",async(req,res)=>{
     var profileid=req.body
-    console.log(profileid)
-    // const userdata=await User.deleteOne({})
+    console.log(req.body)
+    try{
+        const userdata=await User.deleteOne({_id:profileid._id})
     res.status(201).send("Profile delete")
+    }
+    catch{
+        console.log(err)
+    }
 })
 module.exports=router;

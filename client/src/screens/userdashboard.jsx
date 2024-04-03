@@ -13,15 +13,21 @@ function userdashboard() {
     const data=[{title:"image"},{title:"image1"},{title:"image2"},{title:"image3"},{title:"image4"},{title:"image5"},{title:"image5"}]
     const[ismodel,setModel]=useState(false)
     const[menumodel,setMenumodel]=useState(false)
+    const handlelogout=()=>{
+        localStorage.removeItem("token")
+         nav("/")
+    }
+    // console.log(menumodel)
     const isOpen  = () => setModel(true);
     const isClose  = () => setModel(false);
-    const isMenuopen  = () => setMenuModel(true);
-    const isMenuclose  = () => setMenuModel(false);
+    const isMenuopen  = () => setMenumodel(true);
+    const isMenuclose  = () => setMenumodel(false);
+    
     useEffect(()=>{
         api.post('/user/check')
         .then((res)=>{
             const data=res.data
-            console.log(res.data)
+            // console.log(res.data)
             if(data=='invalid'){
                 toast.error("Unauthorized access")
                 nav("/login")
@@ -38,7 +44,7 @@ function userdashboard() {
         })
         .catch((err)=>{console.log(err)})
 
-    })
+    },[])
     return (
         <div className='min-w-[100vh] min-h-[100vh] '>
             <div className='w-[100%] h-[20vh] bg-white banner6 shadowb '>
@@ -46,8 +52,8 @@ function userdashboard() {
                     <div className='w-[100%] h-[50%] flex justify-evenly'>
                     <a className='w-[30%] h-[100%]' href='/login'><img className='w-[30px] h-[30px] m-4' src={Goback}/></a>
                     <div className='w-[70%] h-[100%] flex justify-end'>
-                        <img src={Menubar} className='w-[30px] h-[30px] m-4 menu'/>
-                        <ReactModal isOpen={true} ariaHideApp={false} style={{
+                        <button className='w-[30px] h-[30px] m-4 menu' onClick={isMenuopen}><img src={Menubar} className='menu'/></button>
+                        <ReactModal isOpen={menumodel} ariaHideApp={false} style={{
         overlay: {
             backgroundColor: 'rgba(0,0,0,0.4)',
             zIndex: 9
@@ -64,9 +70,10 @@ function userdashboard() {
             border:'none'     
           }      
     }} >
-        <div className='w-[170px] h-[150px] bg-white flex flex-col justify-evenly items-center '>
-            <button className='w-[90%] h-[20%] mt-2 bd-box text-center menu'>Add image</button>
-            <button className='w-[90%] h-[20%] mb-2 red bd-box text-center text-white menu' onClick={isMenuopen()}>Logout</button>
+        <div className='w-[170px] h-[150px] bg-white flex flex-col justify-evenly items-center bd'>
+            <button className='w-[90%] h-[20%] mt-2 bd-box text-center menu green'>Add image</button>
+            <button className='w-[90%] h-[20%] mb-2 red bd-box text-center text-white menu' onClick={handlelogout}>Logout</button>
+            <button className='w-[90%] h-[20%] mb-2  bd-box text-center text-white menu ' onClick={isMenuclose} >Cancel</button>
         </div>
     </ReactModal>
                     </div>

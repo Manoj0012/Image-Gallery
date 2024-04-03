@@ -11,21 +11,25 @@ const handledelete=(data)=>{
   console.log(data)
   api.post("/admin/manageuser/delete",data)
   .then((res)=>{
-    toast.success(res.data),console.log(res.data)})
+    toast.success(res.data),console.log(res.data),
+  isClose()
+})
   .catch((err)=>{console.log(err)})
 }
   useEffect(()=>{
      api.get("/admin/manageuser")
      .then((res)=>{
       setValue(res.data)
-      
       console.log(res.data)})
      .catch((err)=>{console.log(err)})
   },[])
   
   return (
     <div className='w-[99%] h-[99%]  grid grid-cols-3 banner4    '>
-      <ReactModal isOpen={true} ariaHideApp={false} style={{
+   
+      {value.map((items,index)=>{
+     return <div key={index} className='w-[250px] h-[300px] flex flex-col  bg-white mt-4 bd-box banner3 '>
+    <ReactModal isOpen={ismodel} ariaHideApp={false} style={{
         overlay: {
             backgroundColor: 'rgba(0,0,0,0.4)',
             zIndex: 9
@@ -44,16 +48,16 @@ const handledelete=(data)=>{
        
     }} >
         
-      <div className='w-[250px] h-[200px] bg-white  bd-box flex flex-col justify-evenly'>
-        <div className='w-[100%] h-[60%] bg-black'></div>
-        <div className='w-[100%] h-[40%] flex'>
-          <div className='w-[30%] h-[50%] red'>delete</div>
-          <div className='w-[50%] h-[50%]'>cancel</div>
+      <div className='w-[250px] h-[150px] bg-white  bd-box flex flex-col justify-evenly'>
+        <div className='w-[100%] h-[60%] flex justify-center items-center'>
+          <p>Are you sure?</p>
+        </div>
+        <div className='w-[100%] h-[40%] flex justify-evenly items-center'>
+          <button onClick={()=>handledelete(items)} className='w-[35%] h-[50%] red flex items-center justify-center bd-box'>delete</button>
+          <button onClick={isClose} className='w-[35%] h-[50%] flex items-center justify-center bd-box'>cancel</button>
         </div>
       </div>
     </ReactModal>
-      {value.map((items,index)=>{
-     return <div key={index} className='w-[250px] h-[300px] flex flex-col  bg-white mt-4 bd-box banner3 '>
  <div  className='w-[100%] h-[40%] flex justify-center '>
        <img className='w-[50%] h-[100%] mt-2 shadowb'/>
     </div>
