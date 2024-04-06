@@ -5,8 +5,26 @@ const upload = multer();
 const Post=require("../models/postschema")
 router.use(bodyparser.json());
 
-router.get("/allpost",(req,res)=>{
-    res.send("post node")
+router.get("/allpost",async(req,res)=>{
+    try{
+        const data=await Post.find({})
+        // console.log(data)
+        res.json(data)
+    }
+    catch(err){
+        console.log(err)
+    }
+})
+router.get("/userpost",async(req,res)=>{
+    try{
+        console.log(req.body)
+        // const data=await Post.find({owner:req.body})
+        // // console.log(data)
+        // res.json(data)
+    }
+    catch(err){
+        console.log(err)
+    }
 })
 router.post("/add",upload.single("image"),async(req,res)=>{
     try{
@@ -17,9 +35,11 @@ router.post("/add",upload.single("image"),async(req,res)=>{
             file_size: req.file.size,
         }
         const Caption=req.body.caption
+        const Owner=req.body.owner
         const post=new Post({
-            Image:ImageData,
-            caption:Caption
+            image:ImageData,
+            caption:Caption,
+            owner:Owner
         })
         const result=await post.save();
         return res.status(201).send("file uploaded sucessfully")

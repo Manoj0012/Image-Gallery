@@ -29,8 +29,13 @@ function userdashboard() {
         const dform = new FormData();
         dform.append("image",image);
         dform.append("caption",captions)
+        dform.append("owner",name)
         api.post("/post/add",dform)
-        .then((res)=>{console.log(res)})
+        .then((res)=>{
+            const data=res.data
+            toast.success("file uploaded")
+            isClose()
+        })
         .catch((err)=>{console.log(err)})
     }
     useEffect(()=>{
@@ -53,8 +58,8 @@ function userdashboard() {
             }
         })
         .catch((err)=>{console.log(err)})
-
     },[])
+   
     return (
         <div className='min-w-[100vh] min-h-[100vh] '>
             <div className='w-[100%] h-[20vh] bg-white banner6 shadowb '>

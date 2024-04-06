@@ -3,6 +3,7 @@ const User=require("../models/userschema")
 const bodyparser=require('body-parser')
 const bcrypt=require('bcrypt')
 const jwt=require('jsonwebtoken')
+const Post=require("../models/postschema")
 const {Auth}=require('../utils/middleware')
 router.use(bodyparser.json());
 router.post("/signin",async(req,res)=>{
@@ -51,6 +52,7 @@ catch(err){
 }
 
 })
+
 router.post("/check",Auth,(req,res)=>{
     res.status(201)
 })

@@ -6,7 +6,8 @@ const postschema=new mongodb.Schema({
         file_data: String,
         file_size: String,
     },
-    caption:{type:String,require:true}
+    caption:{type:String,require:true},
+    owner:{type:String,require:true}
 })
 const postmodel=mongodb.model("Posts",postschema)
 module.exports=postmodel;
