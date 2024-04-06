@@ -13,6 +13,9 @@ function userdashboard() {
     const data=[{title:"image"},{title:"image1"},{title:"image2"},{title:"image3"},{title:"image4"},{title:"image5"},{title:"image5"}]
     const[ismodel,setModel]=useState(false)
     const[menumodel,setMenumodel]=useState(false)
+    const[image,setImage]=useState(null)
+    const[captions,setCaptions]=useState("")
+    console.log(captions)
     const handlelogout=()=>{
         localStorage.removeItem("token")
          nav("/")
@@ -22,7 +25,14 @@ function userdashboard() {
     const isClose  = () => setModel(false);
     const isMenuopen  = () => setMenumodel(true);
     const isMenuclose  = () => setMenumodel(false);
-    
+    const handleadd=()=>{
+        const dform = new FormData();
+        dform.append("image",image);
+        dform.append("caption",captions)
+        api.post("/post/add",dform)
+        .then((res)=>{console.log(res)})
+        .catch((err)=>{console.log(err)})
+    }
     useEffect(()=>{
         api.post('/user/check')
         .then((res)=>{
@@ -115,14 +125,14 @@ function userdashboard() {
         <div className='w-[400px] h-[500px] bg-white bd-box flex flex-col justify-evenly '>
         <div className='w-[100%] h-[10%]  font1 flexb'>Add Post</div>
         <div className='w-[100%] h-[40%] flexb '>
-            <input className='w-[90%] h-[95%] bd' type='image'/>
+            <input className='w-[90%] h-[95%] bd' type='file' onChange={(e)=>{setImage(e.target.files[0])}}/>
         </div>
         <div className='w-[100%] h-[20%]  flexb flex-c'>
             <label className='label mb-4 '>Caption</label>
-            <input className='w-[90%] h-[40%] bd-box' type='text'/>
+            <input className='w-[90%] h-[40%] bd-box' type='text' onChange={(e)=>setCaptions(e.target.value)}/>
         </div>
         <div className='w-[100%] h-[20%] flex justify-evenly items-center'>
-            <button className='w-[30%] h-[40%] green bd-box text-white'>Add</button>
+            <button className='w-[30%] h-[40%] green bd-box text-white' onClick={handleadd}>Add</button>
             <button className='w-[30%]  h-[40%]  bd-box red text-white ' onClick={isClose}>Cancel</button>
         </div>
     </div>

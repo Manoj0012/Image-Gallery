@@ -1,11 +1,12 @@
 const mongodb=require("mongoose")
-const postschema=new mongodb.Schema({
-    owner_id:{type:String,require:true},
-    name:{type:String,require:true},
-    name:{type:String,require:true},
-    caption:{type:String,require:true},
-    date:{type:String,require:true}
-
+const postschema=new mongodb.Schema({ 
+    image: { 
+        file_name: String,
+        file_type: String,
+        file_data: String,
+        file_size: String,
+    },
+    caption:{type:String,require:true}
 })
-const postschemamodel=mongodb.model("Posts",postschema)
-module.export=postschemamodel;
+const postmodel=mongodb.model("Posts",postschema)
+module.exports=postmodel;
