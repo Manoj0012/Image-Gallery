@@ -21,8 +21,8 @@ function gallery() {
       <div className='w-[95%] h-[5vh]'><Nav/></div>
       <div className='w-[100%] h-[95vh] flex justify-center items-center '>
         <div className='w-[98%] h-[98%]  bd-box banner5 grid grid-cols-2  justify-items-center over Scroll '>
-        {data.map((items)=>
-          <Postcard key={items} caption={items.caption} src={items.image.file_data}/>
+        {data.map((items,index)=>
+          <Postcard key={index} caption={items.caption} src={items.image.file_data}/>
         )}
         </div>
       </div>

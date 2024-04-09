@@ -5,7 +5,9 @@ const bcrypt=require('bcrypt')
 const jwt=require('jsonwebtoken')
 const Post=require("../models/postschema")
 const {Auth}=require('../utils/middleware')
+const {checkuser}=require('../utils/User')
 router.use(bodyparser.json());
+
 router.post("/signin",async(req,res)=>{
     try{
         const name=req.body.name;
@@ -13,7 +15,6 @@ router.post("/signin",async(req,res)=>{
         const role="user"
         const bcryptpass=await bcrypt.hash(pass,10)
         const check=await User.findOne({username:name})
-        console.log(check)
         if(!check){
             const user=new User({username:name,password:bcryptpass,role:role})
             const result=await user.save()
@@ -32,7 +33,9 @@ const name=req.body.name
 const pass=req.body.password
 try{
 const check=await User.findOne({username:name})
-
+const user=check._id
+req.user=user
+console.log(req.user)
     if(!check){
    return res.send("!user")
     }
@@ -51,6 +54,19 @@ catch(err){
     res.send(err)
 }
 
+})
+router.post("/userpost",async(req,res)=>{
+    try{
+        // const user=req.user
+        // console.log(user)
+        // const Owner=await User.findOne({username:user.name})
+        // const data=await Post.find({owner:Owner._id})
+        // // console.log(data)
+        res.send("user")
+    }
+    catch(err){
+        console.log(err)
+    }
 })
 
 router.post("/check",Auth,(req,res)=>{

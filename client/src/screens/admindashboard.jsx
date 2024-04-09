@@ -7,6 +7,7 @@ import { api } from '../utils/api';
 import Addadmin from './addadmin';
 import { toast } from 'react-toastify';
 
+
 function admindashboard() {
     const [name,setName]=useState('')
     const controlbar=[{title:"My Post",state:"My Post"}, {title:"Manage user",state:"Manage User"}, {title:"Manage Post",state:"Manage Post"}, {title:"Add Admin",state:"Add Admin"}]

@@ -4,13 +4,13 @@ import Addpost from '../components/addpost'
 import Goback from '../assets/image/arrorback.png'
 import Menubar from '../assets/image/menu.png'
 import ReactModal from 'react-modal';
+import Userpost from '../components/userpost';
 import { api } from '../utils/api';
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 function userdashboard() {
     const nav =useNavigate()
     const [name,setName]=useState("")
-    const data=[{title:"image"},{title:"image1"},{title:"image2"},{title:"image3"},{title:"image4"},{title:"image5"},{title:"image5"}]
     const[ismodel,setModel]=useState(false)
     const[menumodel,setMenumodel]=useState(false)
     const[image,setImage]=useState(null)
@@ -42,7 +42,7 @@ function userdashboard() {
         api.post('/user/check')
         .then((res)=>{
             const data=res.data
-            // console.log(res.data)
+            console.log(res.data)
             if(data=='invalid'){
                 toast.error("Unauthorized access")
                 nav("/login")
@@ -104,10 +104,7 @@ function userdashboard() {
                     </div>
                     <div className='w-[100%] h-[80vh] flex justify-center items-center '>
                      <div className='w-[98%] h-[90%] mt-9 bd-box  banner5 bg-white flex-cols'>
-                       <div className='w-[100%] h-[97%] grid grid-cols-3 justify-items-center over Scroll'>
-                         {data.map((items,index)=>{
-                        return(<Postcard key={index} />)
-                        })}
+                    
          <ReactModal isOpen={ismodel} ariaHideApp={false} style={{
         overlay: {
             backgroundColor: 'rgba(0,0,0,0.4)',
@@ -142,7 +139,7 @@ function userdashboard() {
         </div>
     </div>
     </ReactModal>
-                        </div>
+                        <Userpost name={name} />
                         <div className='w-[100%] h-[3%] flex justify-center items-center '>
                             <div className='w-[70px] h-[40px] bg-white bd-box Add flex justify-center items-center text-white' onClick={isOpen}>Add</div>
                         </div>
