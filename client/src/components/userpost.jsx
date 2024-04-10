@@ -3,18 +3,18 @@ import Postcard from './postcard'
 import { api } from '../utils/api'
 function userpost(prop) {
     const[data,setData]=useState([])
-    const name=prop.name
-    console.log(name)
+    const [name,setName]=useState()
+    console.log("aa",name)
     useEffect(()=>{
-    api.post("/user/userpost",{name:name})
+    api.post("/user/userpost")
     .then((res)=>{console.log(res),setData(res.data)})
     .catch((err)=>{console.log(err)})
   },[])
         return (
     <div className='w-[100%] h-[97%] grid grid-cols-3 justify-items-center over Scroll'>
-                         {/* {data.map((items,index)=>{
-                        return(<Postcard key={index} />)
-                        })} */}
+                         {data.map((items,index)=>{
+                        return(<Postcard key={index} src={items.image.file_data} caption={items.caption} />)
+                        })}
                         </div>
   )
 }

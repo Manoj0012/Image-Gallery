@@ -5,7 +5,6 @@ const bcrypt=require('bcrypt')
 const jwt=require('jsonwebtoken')
 const Post=require("../models/postschema")
 const {Auth}=require('../utils/middleware')
-const {checkuser}=require('../utils/User')
 router.use(bodyparser.json());
 
 router.post("/signin",async(req,res)=>{
@@ -33,8 +32,6 @@ const name=req.body.name
 const pass=req.body.password
 try{
 const check=await User.findOne({username:name})
-const user=check._id
-req.user=user
 console.log(req.user)
     if(!check){
    return res.send("!user")
@@ -59,10 +56,10 @@ router.post("/userpost",async(req,res)=>{
     try{
         // const user=req.user
         // console.log(user)
-        // const Owner=await User.findOne({username:user.name})
-        // const data=await Post.find({owner:Owner._id})
-        // // console.log(data)
-        res.send("user")
+        const Owner=await User.findOne({username:"ashim"})
+        const data=await Post.find({owner:Owner._id})
+        // console.log(req.user)
+        res.json(data)
     }
     catch(err){
         console.log(err)
@@ -70,6 +67,7 @@ router.post("/userpost",async(req,res)=>{
 })
 
 router.post("/check",Auth,(req,res)=>{
+    console.log(req.user)
     res.status(201)
 })
 
