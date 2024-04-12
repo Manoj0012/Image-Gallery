@@ -9,14 +9,11 @@ jwt.verify(req.token,'private-key',async(err,data)=>{
 if(err){
 return res.send("invalid")
 }
-else{
     const userdata=await User.findOne({username:data.User})
-    return res.status(200).send(userdata)
-}
+    req.user=userdata
+    next();
 })
-next();
+
 }
-
-
 
 module.exports = {Auth}

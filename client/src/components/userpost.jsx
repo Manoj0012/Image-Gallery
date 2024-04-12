@@ -3,8 +3,6 @@ import Postcard from './postcard'
 import { api } from '../utils/api'
 function userpost(prop) {
     const[data,setData]=useState([])
-    const [name,setName]=useState()
-    console.log("aa",name)
     useEffect(()=>{
     api.post("/user/userpost")
     .then((res)=>{console.log(res),setData(res.data)})
