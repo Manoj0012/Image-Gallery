@@ -27,11 +27,11 @@ router.post("/add",upload.single("image"),async(req,res)=>{
         const Caption=req.body.caption
         const name=req.body.owner
          const Owner=await User.findOne({username:name})
-          console.log(Owner._id) 
+        //   console.log(Owner.username) 
         const post=new Post({
             image:ImageData,
             caption:Caption,
-            owner:Owner._id
+            owner:Owner.username
         })
         const result=await post.save();
         return res.status(201).send("file uploaded sucessfully")

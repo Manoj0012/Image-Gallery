@@ -29,7 +29,7 @@ function userdashboard() {
     const isClose  = () => setModel(false);
     const isMenuopen  = () => setMenumodel(true);
     const isMenuclose  = () => setMenumodel(false);
-    const isprofileopen  = async() =>{ setProfilemodel(true);await delay(1000);await setMenumodel(false)}
+    const isprofileopen  = async() =>{ setProfilemodel(true)}
     const isprofileclose  = () => setProfilemodel(false);
     const handleadd=()=>{
         const dform = new FormData();
@@ -45,6 +45,11 @@ function userdashboard() {
         .catch((err)=>{console.log(err)})
     }
     const addprofile=()=>{
+        if(profileimage==null){
+            // console.log("error");
+            toast.error("Image not selected?");
+        }
+        else{
         const pform = new FormData();
         pform.append("image",profileimage);
         pform.append("name",name)
@@ -54,7 +59,7 @@ function userdashboard() {
             toast.success("file uploaded")
             isClose()
         })
-        .catch((err)=>{console.log(err)})
+        .catch((err)=>{console.log(err)})}
     }
     useEffect(()=>{
         api.post('/user/check')
@@ -182,7 +187,7 @@ function userdashboard() {
     </ReactModal>
                         <Userpost  />
                         <div className='w-[100%] h-[3%] flex justify-center items-center '>
-                            <div className='w-[70px] h-[40px] bg-white bd-box Add flex justify-center items-center text-white' onClick={isOpen}>Add</div>
+                            <div className='w-[70px] h-[40px] bg-white bd-box Add flex justify-center items-center text-white menu' onClick={isOpen}>Add</div>
                         </div>
                      </div>
                     </div>

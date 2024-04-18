@@ -13,8 +13,10 @@ app.use(cors())
 app.use("/user",require('./routes/user'))
 app.use("/admin",require('./routes/admin'))
 app.use("/post",require('./routes/post'))
-app.get('/',Auth,(req,res)=>{
-    res.status(100)
+app.get("/",Auth,(req,res)=>{
+    var user=req.user;
+    console.log(user)
+    res.json(user);
 })
 mongo.connect("mongodb://localhost:27017/photoholic")
 .then(()=>{console.log("database connected")})

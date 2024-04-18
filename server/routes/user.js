@@ -16,8 +16,14 @@ router.post("/signin",async(req,res)=>{
         const role="user"
         const bcryptpass=await bcrypt.hash(pass,10)
         const check=await User.findOne({username:name})
+        const imagedata={ 
+                file_name:null,
+                file_type:null,
+                file_data:null,
+                file_size:null,
+            }
         if(!check){
-            const user=new User({username:name,password:bcryptpass,role:role})
+            const user=new User({username:name,password:bcryptpass,role:role,image:imagedata })
             const result=await user.save()
             res.status(201).send("user created")
         }

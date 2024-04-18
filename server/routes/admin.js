@@ -1,5 +1,6 @@
 const router=require('express').Router()
 const User=require('../models/userschema')
+const Post=require('../models/postschema')
 const bodyparser=require('body-parser')
 const bcrypt=require('bcrypt')
 const jwt=require('jsonwebtoken')
@@ -37,12 +38,28 @@ router.get("/manageuser",async(req,res)=>{
 })
 router.post("/manageuser/delete",async(req,res)=>{
     var profileid=req.body
-    console.log(req.body)
+    // console.log(req.body)
     try{
         const userdata=await User.deleteOne({_id:profileid._id})
     res.status(201).send("Profile delete")
     }
     catch{
+        console.log(err)
+    }
+})
+router.get("/managepost",async(req,res)=>{
+    const userpost=await Post.find({})
+    res.json(userpost)
+    // console.log(userpost)
+})
+router.post("/managepost/delete",async(req,res)=>{
+    var postid=req.body
+    console.log(postid._id)
+    try{
+        const postdata=await Post.deleteOne({_id:postid._id})
+    res.status(201).send("Profile delete")
+    }
+    catch(err){
         console.log(err)
     }
 })

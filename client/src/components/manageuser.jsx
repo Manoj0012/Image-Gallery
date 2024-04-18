@@ -25,10 +25,10 @@ const handledelete=(data)=>{
   },[])
   
   return (
-    <div className='w-[99%] h-[99%]  grid grid-cols-3 banner4    '>
+    <div className='w-[99%] h-[99%]  grid grid-cols-2 gap-1 banner5 justify-items-center  '>
    
       {value.map((items,index)=>{
-     return <div key={index} className='w-[250px] h-[300px] flex flex-col  bg-white mt-4 bd-box banner3 '>
+     return <div key={index} className='w-[250px] h-[300px] flex flex-col  bg-white mt-4 bd-box banner6 '>
     <ReactModal isOpen={ismodel} ariaHideApp={false} style={{
         overlay: {
             backgroundColor: 'rgba(0,0,0,0.4)',
@@ -53,13 +53,13 @@ const handledelete=(data)=>{
           <p>Are you sure?</p>
         </div>
         <div className='w-[100%] h-[40%] flex justify-evenly items-center'>
-          <button onClick={()=>handledelete(items)} className='w-[35%] h-[50%] red flex items-center justify-center bd-box'>delete</button>
+          <button onClick={()=>handledelete(items)} className='w-[35%] h-[50%] red flex items-center justify-center bd-box text-white'>delete</button>
           <button onClick={isClose} className='w-[35%] h-[50%] flex items-center justify-center bd-box'>cancel</button>
         </div>
       </div>
     </ReactModal>
  <div  className='w-[100%] h-[40%] flex justify-center '>
-       <img className='w-[50%] h-[100%] mt-2 shadowb'/>
+       <img className='w-[50%] h-[100%] mt-2 shadowb bd-box' src={items.image.file_data}/>
     </div>
     <div className='w-[100%] h-[30%] flex  justify-evenly items-center text-black  flex-col mt-4 bg-white'>
     <p className='w-[70%] h-[25%] start mt-6'>Id: 00{index+1}</p>
