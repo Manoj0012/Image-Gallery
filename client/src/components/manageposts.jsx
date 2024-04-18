@@ -8,7 +8,7 @@ function manageposts(data) {
     const isOpen  = () => setModel(true);
     const isClose  = () => setModel(false);
   return (
-<div className='w-[99%] h-[99%]  grid grid-cols-2 gap-2 banner4    '>
+<div className='w-[99%] h-[99%]  grid grid-cols-2 gap-2 banner5    '>
 {value.map((items,index)=>{
     return  <div key={index}
       className='w-[400px] h-[350px] flex flex-col justify-evenly items-center bg-white m-4 bd-box '>
@@ -41,8 +41,9 @@ function manageposts(data) {
         </div>
       </div>
     </ReactModal>
-      <div className='w-[95%] h-[70%] mt-2 banner6 flex justify-end'>
-          <div className='w-[25px] h-[50px] flex justify-center items-center'>a</div>
+      <div className='w-[95%] h-[70%] mt-2 banner flex justify-end'>
+          <img className='w-[100%] h-[100%] flex '/>
+          
       </div>
       <div className='w-[95%] h-[30%] flex flex-col justify-center items-center'>
         <p className='w-[100%] h-[20%] text-black text-center '>#Image</p>

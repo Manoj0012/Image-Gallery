@@ -73,9 +73,8 @@ router.post("/addprofile",upload.single("image"),async(req,res)=>{
             file_data: `data:${req.file.mimetype};base64,${req.file.buffer.toString('base64')}`,
             file_size: req.file.size,
         }
-
+        console.log(req.file)
          const profile=await User.findOneAndUpdate({username:req.body.name},{image:ImageData})
-        const result=await profile.save();
         return res.status(201).send("file uploaded sucessfully")
     }
     catch(err){

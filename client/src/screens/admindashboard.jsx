@@ -6,6 +6,7 @@ import Manageposts from '../components/manageposts';
 import { api } from '../utils/api';
 import Addadmin from './addadmin';
 import { toast } from 'react-toastify';
+import ReactModal from 'react-modal';
 
 
 function admindashboard() {
@@ -13,7 +14,9 @@ function admindashboard() {
     const controlbar=[{title:"My Post",state:"My Post"}, {title:"Manage user",state:"Manage User"}, {title:"Manage Post",state:"Manage Post"}, {title:"Add Admin",state:"Add Admin"}]
     const[state,SetState]=useState("My Post");
     const profiledata=[1,2,3,4,5]
+    const[ismodel,setModel]=useState(false)
     console.log(state)
+  
     const handlelogout=()=>{
         localStorage.removeItem("token")
         nav("/")

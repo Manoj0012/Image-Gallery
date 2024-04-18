@@ -10,6 +10,8 @@ import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 function userdashboard() {
     const nav =useNavigate()
+    const [db,setDb]=useState(null)
+    // console.log(db)
     const [name,setName]=useState("")
     const[ismodel,setModel]=useState(false)
     const[menumodel,setMenumodel]=useState(false)
@@ -27,7 +29,7 @@ function userdashboard() {
     const isClose  = () => setModel(false);
     const isMenuopen  = () => setMenumodel(true);
     const isMenuclose  = () => setMenumodel(false);
-    const isprofileopen  = () => setProfilemodel(true);
+    const isprofileopen  = async() =>{ setProfilemodel(true);await delay(1000);await setMenumodel(false)}
     const isprofileclose  = () => setProfilemodel(false);
     const handleadd=()=>{
         const dform = new FormData();
@@ -44,7 +46,7 @@ function userdashboard() {
     }
     const addprofile=()=>{
         const pform = new FormData();
-        pform.append("image",image);
+        pform.append("image",profileimage);
         pform.append("name",name)
         api.post("/user/addprofile",pform)
         .then((res)=>{
@@ -66,6 +68,7 @@ function userdashboard() {
             else {
                 if(data.role=="user"){
                 var values=res.data
+                setDb(res.data.image.file_data)
                 setName(values.username)}
                 else{
                     toast.error("Only users")
@@ -137,7 +140,7 @@ function userdashboard() {
                 <div className='w-[100%] h-[10%] flex items-center justify-center'>
                     
                     <div className='w-[200px] h-[150px] bg-white bd-box mb-14  flex'>       
-                            <img src='' className='w-[100%] h-[100%] bg-white bd-box'/>
+                            <img src={db} className='w-[100%] h-[100%] bg-white bd-box'/>
                     </div>
                     </div>
                     <div className='w-[100%] h-[80vh] flex justify-center items-center '>
@@ -177,7 +180,7 @@ function userdashboard() {
         </div>
     </div>
     </ReactModal>
-                        <Userpost name={name} />
+                        <Userpost  />
                         <div className='w-[100%] h-[3%] flex justify-center items-center '>
                             <div className='w-[70px] h-[40px] bg-white bd-box Add flex justify-center items-center text-white' onClick={isOpen}>Add</div>
                         </div>
